@@ -55,3 +55,74 @@
   }
 }
 
+  /* Premium Animation System */
+@layer utilities {
+    /* Fade In Base */
+  .animate-in {
+    animation-fill-mode: both;
+  }
+  
+  .fade-in {
+      animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+    /* Staggered Fade In Animations */
+    .animate-fade-in {
+      animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0s both;
+    }
+
+    .animate-fade-in-delay-1 {
+      animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+    }
+
+    /* Slide Up Animations */
+    .animate-slide-up-delay-2 {
+      animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+    }
+
+    .animate-slide-up-delay-3 {
+      animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Gradient Animation for Text */
+    .animate-gradient {
+      background-size: 200% auto;
+      animation: gradientShift 3s ease-in-out infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% {
+        background-position: 0% center;
+      }
+      50% {
+        background-position: 100% center;
+      }
+    }
+
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+}

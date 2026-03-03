@@ -48,7 +48,7 @@ export function Navbar() {
         const isAdminUser = !adminError && !!adminRecord;
 
         setIsAdmin(isAdminUser);
-      } catch (error) {
+      } catch {
         setIsAdmin(false);
       } finally {
         setIsLoadingAuth(false);
@@ -59,14 +59,14 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-primary/20 shadow-sm">
+    <header className="sticky top-0 z-50 bg-[#0B1120] backdrop-blur supports-[backdrop-filter]:bg-[#0B1120]/95 border-b border-white/10 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-24 sm:h-[128px]">
           
           {/* LEFT SECTION: Brand Block */}
-          <Link href="/" className="flex items-center gap-4 group">
+          <Link href="/" className="flex items-center gap-4 sm:gap-5 group">
             {/* College Emblem */}
-            <div className="relative w-16 h-16 flex-shrink-0">
+            <div className="relative w-16 h-16 sm:w-[100px] sm:h-[100px] flex-shrink-0 transition-opacity duration-200 group-hover:opacity-90">
               <Image
                 src="/assets/college-emblem.png"
                 alt="HKBK College of Engineering"
@@ -76,22 +76,36 @@ export function Navbar() {
               />
             </div>
 
+            {/* Vertical Divider */}
+            <div className="w-px h-14 sm:h-[88px] bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
+
+            {/* IEEE CS Chapter Logo */}
+            <div className="relative w-16 h-16 sm:w-[100px] sm:h-[100px] flex-shrink-0 transition-opacity duration-200 group-hover:opacity-90">
+              <Image
+                src="/assets/logo.jpeg"
+                alt="IEEE Computer Society Chapter"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+
             {/* IEEE CS Text Block */}
-            <div className="hidden sm:flex flex-col justify-center">
-              <p className="text-xs uppercase tracking-wider text-muted-foreground font-medium">
+            <div className="hidden md:flex flex-col justify-center ml-1">
+              <p className="text-xs uppercase tracking-wider text-gray-400 font-medium leading-tight">
                 IEEE Computer Society
               </p>
-              <h1 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+              <h1 className="text-sm font-semibold text-white group-hover:text-primary transition-colors leading-tight">
                 HKBK Student Chapter
               </h1>
             </div>
 
-            {/* Mobile shortened text */}
-            <div className="flex sm:hidden flex-col justify-center">
-              <p className="text-xs uppercase tracking-wider text-muted-foreground font-medium">
+            {/* Tablet shortened text */}
+            <div className="hidden sm:flex md:hidden flex-col justify-center ml-1">
+              <p className="text-xs uppercase tracking-wider text-gray-400 font-medium leading-tight">
                 IEEE CS
               </p>
-              <h1 className="text-sm font-semibold text-foreground">HKBK</h1>
+              <h1 className="text-sm font-semibold text-white group-hover:text-primary transition-colors leading-tight">HKBK</h1>
             </div>
           </Link>
 
@@ -105,8 +119,8 @@ export function Navbar() {
                 className={cn(
                   "px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 relative group",
                   pathname === link.href
-                    ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-white bg-white/10"
+                    : "text-gray-300 hover:text-white"
                 )}
               >
                 {link.label}
@@ -128,8 +142,8 @@ export function Navbar() {
                 className={cn(
                   "px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 relative group flex items-center gap-2",
                   pathname.startsWith("/admin")
-                    ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-white bg-white/10"
+                    : "text-gray-300 hover:text-white"
                 )}
               >
                 <Settings className="h-4 w-4" />
@@ -148,7 +162,7 @@ export function Navbar() {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+            className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
             aria-expanded={mobileMenuOpen}
@@ -164,7 +178,7 @@ export function Navbar() {
 
       {/* Mobile Navigation Panel */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-primary/20 bg-background/50 backdrop-blur supports-[backdrop-filter]:bg-background/40">
+        <div className="md:hidden border-t border-white/10 bg-[#0B1120]/98 backdrop-blur">
           <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-1">
             {navLinks.map((link) => (
               <Link
@@ -174,8 +188,8 @@ export function Navbar() {
                 className={cn(
                   "block px-3 py-2 rounded-md text-base font-medium transition-colors",
                   pathname === link.href
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                    ? "bg-primary text-white"
+                    : "text-gray-300 hover:bg-white/10 hover:text-white"
                 )}
               >
                 {link.label}
@@ -190,8 +204,8 @@ export function Navbar() {
                 className={cn(
                   "block px-3 py-2 rounded-md text-base font-medium transition-colors",
                   pathname.startsWith("/admin")
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                    ? "bg-primary text-white"
+                    : "text-gray-300 hover:bg-white/10 hover:text-white"
                 )}
               >
                 <div className="flex items-center gap-2">

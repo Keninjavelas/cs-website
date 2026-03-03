@@ -27,49 +27,75 @@ export default async function HomePage() {
   const latestAnnouncements: AnnouncementPreview[] = data || [];
 
   return (
-    <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 bg-gradient-to-br from-background via-background to-primary/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <Zap className="h-4 w-4" />
-              <span>Official IEEE CS Student Chapter</span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-              Advancing Technology
-              <span className="block text-primary mt-2">For Humanity</span>
-            </h1>
-            <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Join the IEEE Computer Society Student Chapter - where innovation
-              meets collaboration. Engage in cutting-edge technical workshops,
-              hackathons, and professional development opportunities.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
-              <Button
-                size="lg"
-                asChild
-                className="bg-primary text-white hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all rounded-lg px-8 py-6 sm:px-10"
-              >
-                <Link href="/events">
-                  Explore Events
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                asChild
-                className="border-2 border-primary text-white hover:bg-primary/10 transition-all rounded-lg px-8 py-6 sm:px-10"
-              >
-                <Link href="/membership">Join IEEE CS</Link>
-              </Button>
+    <div className="relative">
+      <div
+        className="fixed top-0 left-0 w-full h-screen -z-10 bg-cover bg-center bg-no-repeat bg-scroll md:bg-fixed"
+        style={{ backgroundImage: "url('/assets/hero-bg.jpg')" }}
+        aria-hidden="true"
+      />
+      <div
+        className="fixed top-0 left-0 w-full h-screen z-[-5]"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(5,10,25,0.85), rgba(10,15,30,0.85)), rgba(10,15,30,0.80)",
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="relative z-10 flex flex-col">
+        {/* Hero Section */}
+        <section className="relative py-20 lg:py-24 min-h-screen flex items-center">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div className="max-w-4xl mx-auto">
+              <div className="backdrop-blur-md bg-white/[0.03] rounded-2xl border border-white/10 p-8 sm:p-12 shadow-2xl">
+                <div className="text-center">
+                  <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/20 to-blue-500/20 backdrop-blur-sm text-primary px-4 py-2 rounded-full text-sm font-medium mb-6 border border-primary/30 shadow-lg animate-fade-in">
+                    <Zap className="h-4 w-4" />
+                    <span>Official IEEE CS Student Chapter</span>
+                  </div>
+
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6 animate-fade-in-delay-1">
+                    <span className="text-white drop-shadow-lg">Advancing Technology</span>
+                    <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-primary mt-2 drop-shadow-lg animate-gradient">For Humanity</span>
+                  </h1>
+
+                  <p className="text-lg sm:text-xl text-gray-200 mb-8 max-w-2xl mx-auto drop-shadow-md animate-slide-up-delay-2">
+                    Join the IEEE Computer Society Student Chapter - where innovation
+                    meets collaboration. Engage in cutting-edge technical workshops,
+                    hackathons, and professional development opportunities.
+                  </p>
+
+                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center animate-slide-up-delay-3">
+                    <Button
+                      size="lg"
+                      asChild
+                      className="group relative bg-gradient-to-r from-primary via-blue-500 to-primary bg-[length:200%_100%] text-white hover:bg-[position:100%_0] shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/40 transition-all duration-300 rounded-lg px-8 py-6 sm:px-10 hover:scale-105 transform overflow-hidden"
+                    >
+                      <Link href="/events" className="flex items-center gap-2">
+                        <span>Explore Events</span>
+                        <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                      </Link>
+                    </Button>
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      asChild
+                      className="group border-2 border-white/30 bg-white/5 backdrop-blur-sm text-white hover:bg-white/10 hover:border-white/50 transition-all duration-300 rounded-lg px-8 py-6 sm:px-10 hover:scale-105 transform"
+                    >
+                      <Link href="/membership" className="flex items-center gap-2">
+                        <span>Join IEEE CS</span>
+                        <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* About IEEE Computer Society */}
-      <section className="py-16 lg:py-24 bg-muted/30">
+        {/* About IEEE Computer Society */}
+        <section className="py-16 lg:py-24 bg-black/35">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
@@ -127,7 +153,7 @@ export default async function HomePage() {
       </section>
 
       {/* Our Vision Section */}
-      <section className="py-16 lg:py-24">
+      <section className="py-16 lg:py-24 bg-black/25">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
@@ -185,7 +211,7 @@ export default async function HomePage() {
       </section>
 
       {/* Foundational Milestones Section */}
-      <section className="py-16 lg:py-24 bg-muted/20">
+      <section className="py-16 lg:py-24 bg-black/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
@@ -277,7 +303,7 @@ export default async function HomePage() {
       </section>
 
       {/* Latest Announcements */}
-      <section className="py-16 lg:py-24">
+      <section className="py-16 lg:py-24 bg-black/25">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between gap-4 mb-10">
             <div>
@@ -331,7 +357,7 @@ export default async function HomePage() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10">
+      <section className="py-16 lg:py-24 bg-gradient-to-r from-[#0B1120]/60 via-primary/20 to-[#0B1120]/60">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
             Be Part of the Beginning
@@ -358,6 +384,7 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+      </div>
     </div>
   );
 }
