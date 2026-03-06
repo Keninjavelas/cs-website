@@ -1,6 +1,3 @@
-require("dns").setDefaultResultOrder("ipv4first");
-
-import nodemailer from "nodemailer";
 import { NextRequest, NextResponse } from "next/server";
 import {
   isContactFormAllowed,
@@ -8,6 +5,11 @@ import {
   getContactFormRemaining,
 } from "@/lib/rate-limiter";
 import { validateEmail } from "@/lib/email-validation";
+import {
+  sendEmail,
+  escapeHtml,
+  getISTTimestamp,
+} from "@/lib/email-service";
 
 interface ContactFormData {
   name: string;
@@ -110,42 +112,8 @@ export async function POST(request: NextRequest) {
     console.log(`  Name: ${body.name}`);
     console.log(`  Email: ${body.email}`);
 
-    // Create Nodemailer transporter for Gmail using STARTTLS on port 587
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false, // Use STARTTLS instead of implicit SSL
-      auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASS,
-      },
-      tls: {
-        rejectUnauthorized: false,
-      },
-    });
-
     // Get current timestamp in IST
-    const timestamp = new Date().toLocaleString("en-IN", {
-      timeZone: "Asia/Kolkata",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    });
-
-    // Escape HTML entities to prevent injection
-    const escapeHtml = (text: string): string => {
-      const map: { [key: string]: string } = {
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#039;",
-      };
-      return text.replace(/[&<>"']/g, (char) => map[char]);
-    };
+    const timestamp = getISTTimestamp();
 
     // Prepare email content
     const htmlContent = `
@@ -255,9 +223,9 @@ export async function POST(request: NextRequest) {
 
     // Send email
     console.log("📤 Sending email via Gmail SMTP...");
-    const info = await transporter.sendMail({
-      from: process.env.GMAIL_USER,
-      to: process.env.GMAIL_USER,
+    const info = await sendEmail({
+      from: process.env.GMAIL_USER!,
+      to: process.env.GMAIL_USER!,
       replyTo: body.email,
       subject: `[IEEE CS] New Contact: ${escapeHtml(body.subject)}`,
       html: htmlContent,
