@@ -2,12 +2,16 @@ import nodemailer from "nodemailer";
 import type { Transporter } from "nodemailer";
 
 // Set DNS resolution order to prefer IPv4 (fixes some SMTP connection issues)
-if (typeof require !== "undefined") {
-  try {
-    require("dns").setDefaultResultOrder("ipv4first");
-  } catch (error) {
-    console.warn("Could not set DNS resolution order:", error);
+// Only works in Node.js runtime, not Edge Runtime
+try {
+  if (typeof process !== "undefined" && process.versions?.node) {
+    const dns = require("dns");
+    if (dns.setDefaultResultOrder) {
+      dns.setDefaultResultOrder("ipv4first");
+    }
   }
+} catch (error) {
+  // Silently fail - not critical for functionality
 }
 
 export interface EmailConfig {
@@ -20,9 +24,9 @@ export interface EmailConfig {
 }
 
 /**
- * Create and verify Gmail SMTP transporter
+ * Create Gmail SMTP transporter (without verification for performance)
  */
-export async function createEmailTransporter(): Promise<Transporter> {
+export function createEmailTransporter(): Transporter {
   if (!process.env.GMAIL_USER || !process.env.GMAIL_PASS) {
     throw new Error("Email credentials not configured. Please set GMAIL_USER and GMAIL_PASS environment variables.");
   }
@@ -40,15 +44,6 @@ export async function createEmailTransporter(): Promise<Transporter> {
     },
   });
 
-  // Verify connection
-  try {
-    await transporter.verify();
-    console.log("✅ Email transporter verified successfully");
-  } catch (error) {
-    console.error("❌ Email transporter verification failed:", error);
-    throw new Error("Failed to connect to email service. Please check your credentials.");
-  }
-
   return transporter;
 }
 
@@ -56,7 +51,7 @@ export async function createEmailTransporter(): Promise<Transporter> {
  * Send email using configured transporter
  */
 export async function sendEmail(config: EmailConfig): Promise<{ messageId: string }> {
-  const transporter = await createEmailTransporter();
+  const transporter = createEmailTransporter();
 
   try {
     const info = await transporter.sendMail({

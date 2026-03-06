@@ -240,7 +240,43 @@ This fixes connection issues on some networks.
 3. Add:
    - `GMAIL_USER` (mark as Sensitive)
    - `GMAIL_PASS` (mark as Sensitive)
-4. Redeploy the application
+4. Select all environments: Production, Preview, Development
+5. Redeploy the application
+
+**IMPORTANT**: After adding environment variables, you MUST redeploy for changes to take effect.
+
+### Troubleshooting Vercel Deployment
+
+If you get a 500 error on Vercel:
+
+1. **Check environment variables are set** in Vercel dashboard
+2. **Redeploy** after adding variables
+3. **Check function logs** in Vercel deployment details
+4. **Test the debug endpoint**: `https://your-site.vercel.app/api/contact/debug`
+
+See `docs/VERCEL_EMAIL_TROUBLESHOOTING.md` for detailed troubleshooting steps.
+
+### Debug Endpoint
+
+A debug endpoint is available at `/api/contact/debug` to check configuration:
+
+```bash
+curl https://your-site.vercel.app/api/contact/debug
+```
+
+Response example:
+```json
+{
+  "checks": {
+    "gmailUserSet": true,
+    "gmailPassSet": true,
+    "gmailUserValue": "hkb***"
+  },
+  "smtpTest": "success"
+}
+```
+
+**Security Note**: Remove or protect this endpoint in production.
 
 ### Security Best Practices
 

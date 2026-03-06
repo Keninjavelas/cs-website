@@ -11,6 +11,9 @@ import {
   getISTTimestamp,
 } from "@/lib/email-service";
 
+// Force Node.js runtime for nodemailer compatibility
+export const runtime = "nodejs";
+
 interface ContactFormData {
   name: string;
   email: string;
@@ -255,6 +258,14 @@ Received on: ${timestamp} (IST)
     );
   } catch (error) {
     console.error("❌ Exception occurred:", error);
+    
+    // Log more details for debugging
+    if (error instanceof Error) {
+      console.error("Error name:", error.name);
+      console.error("Error message:", error.message);
+      console.error("Error stack:", error.stack);
+    }
+    
     console.log("=== END CONTACT FORM SUBMISSION ===\n");
 
     // Don't expose error details to client
