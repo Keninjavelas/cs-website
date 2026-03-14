@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import OwlMascot from "@/components/chatbot/OwlMascot";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -110,7 +111,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark" data-scroll-behavior="smooth">
       <head>
         <script
           type="application/ld+json"
@@ -123,8 +124,8 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <OwlMascot />
       </body>
     </html>
   );
 }
-

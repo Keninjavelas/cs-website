@@ -1,0 +1,66 @@
+<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Body -->
+  <ellipse cx="30" cy="42" rx="16" ry="14" fill="url(#bodyGradient)" />
+  <ellipse cx="30" cy="42" rx="12" ry="10" fill="url(#bodyShade)" />
+  
+  <!-- Head -->
+  <circle cx="30" cy="20" r="14" fill="url(#headGradient)" />
+  <circle cx="30" cy="20" r="10" fill="url(#headShade)" />
+  
+  <!-- Ears/Antenna -->
+  <path d="M22 12 L18 6" stroke="url(#antennaGradient)" stroke-width="2" stroke-linecap="round" />
+  <path d="M38 12 L42 6" stroke="url(#antennaGradient)" stroke-width="2" stroke-linecap="round" />
+  <circle cx="18" cy="6" r="1.5" fill="#E2E8F0" />
+  <circle cx="42" cy="6" r="1.5" fill="#E2E8F0" />
+  
+  <!-- Eyes -->
+  <g>
+    <circle cx="25" cy="18" r="4" fill="#0F172A" />
+    <circle cx="25" cy="18" r="2" fill="#38BDF8" />
+    <circle cx="26" cy="17" r="0.8" fill="white" opacity="0.9" />
+  </g>
+  <g>
+    <circle cx="35" cy="18" r="4" fill="#0F172A" />
+    <circle cx="35" cy="18" r="2" fill="#38BDF8" />
+    <circle cx="36" cy="17" r="0.8" fill="white" opacity="0.9" />
+  </g>
+  
+  <!-- Beak -->
+  <path d="M28 24 L32 24 L30 28 Z" fill="#E2E8F0" />
+  
+  <!-- Wings -->
+  <path d="M14 32 C 8 32, 6 40, 12 44" stroke="url(#wingGradient)" stroke-width="2.5" stroke-linecap="round" fill="none" />
+  <path d="M46 32 C 52 32, 54 40, 48 44" stroke="url(#wingGradient)" stroke-width="2.5" stroke-linecap="round" fill="none" />
+  
+  <!-- Tech details -->
+  <circle cx="26" cy="42" r="0.8" fill="#1F4ED8" opacity="0.6" />
+  <circle cx="34" cy="42" r="0.8" fill="#1F4ED8" opacity="0.6" />
+  <circle cx="30" cy="46" r="0.8" fill="#1F4ED8" opacity="0.6" />
+  
+  <defs>
+    <linearGradient id="bodyGradient" x1="30" y1="28" x2="30" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A66C2" />
+      <stop offset="1" stop-color="#1F4ED8" />
+    </linearGradient>
+    <linearGradient id="bodyShade" x1="30" y1="32" x2="30" y2="52" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A" opacity="0.3" />
+      <stop offset="1" stop-color="transparent" />
+    </linearGradient>
+    <linearGradient id="headGradient" x1="30" y1="6" x2="30" y2="34" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A66C2" />
+      <stop offset="1" stop-color="#1F4ED8" />
+    </linearGradient>
+    <linearGradient id="headShade" x1="30" y1="10" x2="30" y2="30" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A" opacity="0.3" />
+      <stop offset="1" stop-color="transparent" />
+    </linearGradient>
+    <linearGradient id="antennaGradient" x1="20" y1="9" x2="20" y2="3" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A66C2" />
+      <stop offset="1" stop-color="#1F4ED8" />
+    </linearGradient>
+    <linearGradient id="wingGradient" x1="14" y1="32" x2="12" y2="44" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A66C2" />
+      <stop offset="1" stop-color="#1F4ED8" />
+    </linearGradient>
+  </defs>
+</svg>

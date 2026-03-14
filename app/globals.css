@@ -121,8 +121,34 @@
       }
     }
 
+    @keyframes owlPulse {
+      0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 0px #38bdf8);
+      }
+      50% {
+        transform: scale(1.12);
+        filter: drop-shadow(0 0 20px #38bdf8);
+      }
+      100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 0px #38bdf8);
+      }
+    }
+
     /* Smooth Scroll */
     html {
       scroll-behavior: smooth;
     }
+}
+
+ .styza-thinking {
+  animation: owlPulse 1.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .styza-thinking {
+    animation: none !important;
+    filter: drop-shadow(0 0 14px #38bdf8);
+  }
 }

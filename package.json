@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "powershell.exe -NoProfile -ExecutionPolicy Bypass -Command \"Set-Location -LiteralPath 'C:\\Users\\aryan\\OneDrive\\Desktop\\CS_Website'; node 'C:\\Users\\aryan\\OneDrive\\Desktop\\CS_Website\\scripts\\dev-launcher.mjs'\"",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

@@ -71,6 +71,7 @@ export function Navbar() {
                 src="/assets/college-emblem.png"
                 alt="HKBK College of Engineering"
                 fill
+                sizes="(max-width: 640px) 64px, 100px"
                 className="object-contain"
                 priority
               />
@@ -85,6 +86,7 @@ export function Navbar() {
                 src="/assets/logo.jpeg"
                 alt="IEEE Computer Society Chapter"
                 fill
+                sizes="(max-width: 640px) 64px, 100px"
                 className="object-contain"
                 priority
               />
